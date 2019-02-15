@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <!-- <Content></Content> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import Content from "./components/Content.vue";
+import New from "./components/New.vue";
+import Popular from "./components/Popular.vue";
+import VueRouter from "vue-router";
+import Vue from "vue";
+Vue.use(VueRouter);
+const router = new VueRouter({
+  routes: [
+    { path: "/", redirect: "/new" },
+    { path: "/new", component: New },
+    { path: "/popular", component: Popular }
+  ]
+});
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Content,
+    New,
+    Popular
+  },
+  router: router
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
